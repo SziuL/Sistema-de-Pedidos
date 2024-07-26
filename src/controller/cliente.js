@@ -1,6 +1,6 @@
 const Cliente = require("../resources/cliente");
 
-module.exports.getCriar = async (req, res, next) => {
+exports.getCriar = async (req, res, next) => {
   try {
     return res.send("oi, aqui renderizo cadastro");
   } catch (err) {
@@ -8,9 +8,20 @@ module.exports.getCriar = async (req, res, next) => {
   }
 };
 
-module.exports.postCriar = async (req, res, next) => {
+exports.postCriar = async (req, res, next) => {
   try {
     const cliente = await Cliente.criar(req.body);
     return res.json(cliente);
-  } catch (err) {}
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.buscaTodos = async (req, res, next) => {
+  try {
+    const todos = await Cliente.buscaTodos();
+    return res.json(todos);
+  } catch (err) {
+    next(err);
+  }
 };

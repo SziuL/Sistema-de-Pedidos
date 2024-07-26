@@ -19,7 +19,7 @@ app.use("/cliente", cliente_route);
 
 // chamando rotas
 app.use("/", (req, res) => {
-  return res.send("olá, tudo bom?");
+  return res.render("login");
 });
 
 // exportando aplicação
