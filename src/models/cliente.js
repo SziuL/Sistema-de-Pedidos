@@ -1,6 +1,11 @@
-const smc = require("simple-mongoose-creator");
+const mongoose = require('mongoose');
 
-smc.smc("clientes", {
+smc = (collection_name, object_schema) => {
+    const schema = new mongoose.Schema(object_schema);
+    return mongoose.model(collection_name, schema);
+}
+
+smc("clientes", {
   nome: {
     type: String,
     required: true,
