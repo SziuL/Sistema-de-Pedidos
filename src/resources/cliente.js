@@ -23,6 +23,12 @@ class Cliente {
   static async deletar(id) {
     return await modelo.findOneAndReplace(id);
   }
+
+  static async validar(dados) {
+    let { email } = dados;
+    let cliente = await modelo.findOne({ email });
+    return cliente;
+  }
 }
 
 module.exports = Cliente;

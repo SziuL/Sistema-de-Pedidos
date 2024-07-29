@@ -10,8 +10,14 @@ exports.getCriar = async (req, res, next) => {
 
 exports.postCriar = async (req, res, next) => {
   try {
-    const cliente = await Cliente.criar(req.body);
-    return res.json(cliente);
+    let resultado = await Cliente.validar(req.body);
+
+    if (!resultado) {
+      const cliente = await Cliente.criar(req.body);
+      return res.json(cliente);
+    } else {
+      res.json({ error: "Cliente já existe na base de dados." });
+    }
   } catch (err) {
     next(err);
   }

@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
-smc = (collection_name, object_schema) => {
-  const schema = new mongoose.Schema(object_schema);
-  return mongoose.model(collection_name, schema);
-};
-
-smc("clientes", {
+const schema = new mongoose.Schema({
   nome: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  email: {
     type: String,
     required: true,
     trim: true,
@@ -15,6 +15,10 @@ smc("clientes", {
     type: String,
     required: true,
   },
+  cpf: {
+    type: String,
+    required: false
+  }
 });
 
-module.exports = smc;
+module.exports = mongoose.model("clientes", schema);

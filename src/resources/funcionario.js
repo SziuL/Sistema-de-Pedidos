@@ -14,7 +14,16 @@ class Funcionario {
     return await new modelo(dados).save();
   }
 
+  static async validarRegistro(dados) {
+    const { matricula } = dados;
+    const funcionario = await modelo.findOne({ matricula });
+
+    return funcionario;
+  }
+
   static async autenticar(dados) {
+
+    // const {senha} = 
     const { matricula } = dados;
     const funcionario = await modelo.findOne({ matricula });
 

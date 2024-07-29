@@ -1,10 +1,15 @@
-const smc = require("simple-mongoose-creator");
+const mongoose = require("mongoose");
 
-smc.smc("funcionarios", {
+schema = new mongoose.Schema({
   matricula: {
     type: Number,
     required: true,
     unique: true,
+  },
+  nome: {
+    type: String,
+    required: true,
+    trim: true,
   },
   senha: {
     type: String,
@@ -13,4 +18,4 @@ smc.smc("funcionarios", {
   },
 });
 
-module.exports = smc;
+module.exports = mongoose.model("funcionarios", schema);
