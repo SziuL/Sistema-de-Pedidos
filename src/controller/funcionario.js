@@ -6,7 +6,7 @@ const storage = require("../middleware/localtoken");
 // funções para login de funcionários no sistema
 exports.getLogar = async (req, res, next) => {
   try {
-    return res.send("estou na pagina de logar");
+    return res.render("login/_index.ejs");
   } catch (err) {
     next(err);
   }

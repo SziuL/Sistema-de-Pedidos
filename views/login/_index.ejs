@@ -1,8 +1,8 @@
-<% include ../defaults/_top.ejs %>
+<%- include('../layouts/_black.ejs') %>
 
-<form action="">
-  matricula: <input type="text" /> <br />
-  senha: <inpuy type="password"> <br>
-    <button type="submit">Logar</button>
+<form method="POST" enctype="application/x-www-form-urlencoded">
+  matricula: <input type="text" name="matricula"/> <br />
+  senha: <input type="password" name="senha"/> <br />
+  <button type="submit">Logar</button>
 </form>
-<% include ../defaults/_bottom.ejs%>
+<%- include('../defaults/_bottom.ejs') %>

@@ -15,9 +15,9 @@ app.set("views", "views");
 app.use(express.static("public"));
 
 const cliente_route = require("../src/routes/cliente");
-app.use("/cliente", cliente_route);
-
 const funcionario_route = require("../src/routes/funcionario");
+
+app.use("/cliente", cliente_route);
 app.use("/funcionario", funcionario_route);
 
 // chamando rotas
