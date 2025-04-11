@@ -2,7 +2,7 @@ const Cliente = require("../resources/cliente");
 
 exports.getCriar = async (req, res, next) => {
   try {
-    return res.send("oi, aqui renderizo cadastro");
+    return res.render("cadastro/cadastroCliente");
   } catch (err) {
     next(err);
   }

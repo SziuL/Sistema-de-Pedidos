@@ -1,8 +1,10 @@
+require("dotenv").config();
 const app = require("./bin/index");
 const keys = require("./bin/keys");
 const connection = require("./src/middleware/connection");
 
-app.listen(keys.server.port, (err) => {
+// Inicializa o servidor
+app.listen(keys.server.port, async (err) => {
   connection.verify();
   if (err) {
     console.log("==> [-] Falha na aplicação");

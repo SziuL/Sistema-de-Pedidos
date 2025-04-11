@@ -1,11 +1,17 @@
 const express = require("express");
-const bp = require("body-parser");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const cliente_routes = require("../src/routes/cliente");
+const funcionario_routes = require("../src/routes/funcionario");
+const login_routes = require("../src/routes/login");
+const home_routes = require("../src/routes/home");
 
 const app = express();
 
 // configurando parser
-app.use(bp.json({ limit: "10mb" }));
-app.use(bp.urlencoded({ extendend: false }));
+app.use(bodyParser.json({ limit: "10mb" }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // configurando frontend
 app.set("view engine", "ejs");
@@ -14,16 +20,11 @@ app.set("views", "views");
 // definindo arquivos estáticos
 app.use(express.static("public"));
 
-const cliente_route = require("../src/routes/cliente");
-const funcionario_route = require("../src/routes/funcionario");
-
-app.use("/cliente", cliente_route);
-app.use("/funcionario", funcionario_route);
-
-// chamando rotas
-app.use("/", (req, res) => {
-  return res.send("something");
-});
+// Chamando rotas
+app.use("/", login_routes);
+app.use("/home", home_routes);
+app.use("/cliente", cliente_routes);
+app.use("/funcionario", funcionario_routes);
 
 // exportando aplicação
 module.exports = app;

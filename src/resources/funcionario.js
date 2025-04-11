@@ -1,29 +1,25 @@
-require("../models/funcionario");
-
-const mongoose = require("mongoose");
-const modelo = mongoose.model("funcionarios");
-const bc = require("bcrypt");
+const modelo = require("../models/funcionario");
+const bcrypt = require("bcrypt");
 const salt = 10;
 
 class Funcionario {
   static async criar(dados) {
     let { senha } = dados;
-    const hash = await bc.hash(senha, salt);
+    const hash = await bcrypt.hash(senha, salt);
     senha = hash;
     dados.senha = senha;
+
     return await new modelo(dados).save();
   }
 
   static async validarRegistro(dados) {
-    const { matricula } = dados;
-    const funcionario = await modelo.findOne({ matricula });
+    const { email } = dados;
+    const funcionario = await modelo.findOne({ email });
 
     return funcionario;
   }
 
   static async autenticar(dados) {
-
-    // const {senha} = 
     const { matricula } = dados;
     const funcionario = await modelo.findOne({ matricula });
 

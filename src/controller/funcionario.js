@@ -1,12 +1,12 @@
 const Funcionario = require("../resources/funcionario");
-const cript = require("bcrypt");
+const bcrypt = require("bcrypt");
 const auth = require("../middleware/auth");
 const storage = require("../middleware/localtoken");
 
 // funções para login de funcionários no sistema
 exports.getLogar = async (req, res, next) => {
   try {
-    return res.render("login/_index.ejs");
+    return res.send("tela de login de funcionario");
   } catch (err) {
     next(err);
   }
@@ -19,7 +19,7 @@ exports.postLogar = async (req, res, next) => {
       return res.send("Funcionario nao foi encontrado!");
     }
 
-    if (!(await cript.compare(req.body.senha, resultado.senha))) {
+    if (!(await bcrypt.compare(req.body.senha, resultado.senha))) {
       return res.send("Senha incorreta.");
     }
 
@@ -49,7 +49,7 @@ exports.getDeslogar = async (req, res, next) => {
 // funções para registro de funcionário
 exports.getCriar = async (req, res, next) => {
   try {
-    return res.send("oi, aqui renderizo cadastro");
+    return res.render("login/loginFuncionario");
   } catch (err) {
     next(err);
   }

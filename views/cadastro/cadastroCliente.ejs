@@ -1,10 +1,11 @@
 <%- include('../layouts/_black.ejs') %>
-
 <form method="POST" enctype="application/x-www-form-urlencoded">
-  <h1>Login</h1>
+  <h1>Cadastro de cliente</h1>
+  <input type="text" name="nome" placeholder="Nome completo" /> <br />
   <input type="email" name="email" placeholder="Email" /> <br />
+  <input type="text" name="telefone" placeholder="Telefone" /> <br />
+  <input type="text" name="cpf" placeholder="CPF" /> <br />
   <input type="password" name="senha" placeholder="Senha" /> <br />
-  <button type="submit">Entrar</button>
+  <button type="submit">Cadastrar</button>
 </form>
-
 <%- include('../defaults/_bottom.ejs') %>

@@ -1,10 +1,14 @@
-require("../models/cliente");
-
-const mongoose = require("mongoose");
-const modelo = mongoose.model("clientes");
+const modelo = require("../models/cliente");
+const bcrypt = require("bcrypt");
+const salt = 10;
 
 class Cliente {
   static async criar(dados) {
+    let { senha } = dados;
+    const hash = await bcrypt.hash(senha, salt);
+    senha = hash;
+    dados.senha = senha;
+
     return await new modelo(dados).save();
   }
 
